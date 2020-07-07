@@ -1,6 +1,5 @@
-package com.leet.stack;
+package com.leet.stackandqueue.stack;
 
-import java.sql.SQLOutput;
 import java.util.Stack;
 
 /**

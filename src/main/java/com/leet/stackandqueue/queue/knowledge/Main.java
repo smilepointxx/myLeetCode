@@ -1,4 +1,4 @@
-package com.leet.queue.knowledge;
+package com.leet.stackandqueue.queue.knowledge;
 
 /**
  * @Author: xingxing.chang

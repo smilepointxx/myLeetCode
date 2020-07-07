@@ -1,4 +1,4 @@
-package com.leet.queue.code;
+package com.leet.stackandqueue.queue.code;
 
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;

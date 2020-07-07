@@ -1,4 +1,4 @@
-package com.leet.queue.circular;
+package com.leet.stackandqueue.queue.circular;
 
 /**
  * @Author: xingxing.chang

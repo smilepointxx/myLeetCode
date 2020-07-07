@@ -1,4 +1,4 @@
-package com.leet.stack;
+package com.leet.stackandqueue.stack;
 
 import com.leet.utils.TreeNode;
 
@@ -46,7 +46,7 @@ public class InorderTraversal {
                 root = root.right;
             }
         }
-        return null;
+        return ans;
     }
 
 

@@ -1,4 +1,4 @@
-package com.leet.queue.knowledge;
+package com.leet.stackandqueue.queue.knowledge;
 
 import java.util.ArrayList;
 import java.util.List;
