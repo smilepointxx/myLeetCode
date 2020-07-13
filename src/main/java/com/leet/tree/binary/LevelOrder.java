@@ -53,8 +53,11 @@ public class LevelOrder {
         treeNode3.left = treeNode4;
         treeNode3.right = treeNode5;
 
-        LevelOrder levelOrder = new LevelOrder();
-        System.out.println(levelOrder.levelOrder(treeNode1));
+        MaxDepth maxDepth = new MaxDepth();
+        System.out.println(maxDepth.maxDepth(treeNode1));
+
+//        LevelOrder levelOrder = new LevelOrder();
+//        System.out.println(levelOrder.levelOrder(treeNode1));
     }
 
 }

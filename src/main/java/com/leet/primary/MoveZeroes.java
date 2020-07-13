@@ -1,4 +1,4 @@
-package com.leet.tree.binary;
+package com.leet.primary;
 
 /**
  * @Author: xingxing.chang
