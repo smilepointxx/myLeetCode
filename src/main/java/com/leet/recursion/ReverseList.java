@@ -16,7 +16,7 @@ public class ReverseList {
             cursor = head;
             head = next;
         }
-        return head;
+        return cursor;
     }
 
 
