@@ -19,7 +19,7 @@ public class RemoveNthFromEnd {
                 p1 = p1.next;
             }
         }
-
+        return null;
     }
 
 }
