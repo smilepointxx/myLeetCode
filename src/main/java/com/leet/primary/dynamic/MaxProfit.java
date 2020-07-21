@@ -39,7 +39,7 @@ public class MaxProfit {
     }
 
 
-    public int maxProfitV2(int[] prices) {
+    public int maxProfitV3(int[] prices) {
         if (prices.length == 0) {
             return 0;
         }
@@ -47,6 +47,7 @@ public class MaxProfit {
 
         dp[0][0] = 0;
         dp[0][1] = Integer.MIN_VALUE;
+        return 1;
     }
 
     public static void main(String[] args) {
