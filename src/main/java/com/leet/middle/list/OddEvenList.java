@@ -9,7 +9,24 @@ import com.leet.utils.ListNode;
 public class OddEvenList {
 
     public ListNode oddEvenList(ListNode head) {
-        return null;
+
+        if (head == null) {
+            return head;
+        }
+
+        ListNode p2 = head;
+
+        ListNode p3 = head.next;
+        ListNode p4 = head.next;
+
+        while (p4 != null && p2.next != null) {
+            p2.next = p4.next;
+            p2 = p2.next;
+            p4.next = p2.next;
+            p4 = p4.next;
+        }
+        p2.next = p3;
+        return head;
 
     }
 
