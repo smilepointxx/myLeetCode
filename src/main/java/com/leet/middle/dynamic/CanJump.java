@@ -23,16 +23,59 @@ public class CanJump {
         if (n == nums.length - 1) {
             return true;
         }
-        boolean ans = false;
         for (int i = 1; i <= nums[n]; i++) {
-            ans = ans || helper(nums, i + n);
+            if (helper(nums, i + n)) {
+                return true;
+            }
         }
-        return ans;
+        return false;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{2409,2409};
-        System.out.println(new CanJump().canJump(nums));
+        int[] nums = new int[]{3,2,1,0,4};
+        System.out.println(new CanJump().canJumpV2(nums));
     }
+
+    public boolean canJumpV2(int[] nums) {
+        if (nums.length == 0) {
+            return true;
+        }
+        return helperV2(nums, 0, 0);
+
+
+    }
+
+    private boolean helperV2(int[] nums, int max, int n) {
+        if (max >= nums.length || n >= (nums.length - 1)) {
+            return true;
+        }
+
+        for (int i = 1; i <= nums[n]; i++) {
+            if (helperV2(nums, Math.max(max, n + nums[n]), n + i)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean canJumpV3(int[] nums) {
+        if (nums.length == 0) {
+            return true;
+        }
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i <= max) {
+                max = Math.max(max, nums[i] + i);
+                if (max >= nums.length - 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+
+    }
+
 
 }
