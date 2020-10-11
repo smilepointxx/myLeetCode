@@ -11,11 +11,16 @@ public class MergeTrees {
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         help(t1, t2, null);
         return t1;
+
     }
 
     private void help(TreeNode t1, TreeNode t2, TreeNode parent) {
 
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println("配置maven中!!!");
     }
 
 }
