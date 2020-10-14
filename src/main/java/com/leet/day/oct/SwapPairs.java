@@ -9,7 +9,17 @@ import com.leet.utils.ListNode;
 public class SwapPairs {
 
     public ListNode swapPairs(ListNode head) {
+        return help(head);
+    }
+
+    private ListNode help(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+
         return null;
+
+
     }
 
 }
