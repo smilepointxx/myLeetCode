@@ -10,20 +10,27 @@ public class SortedSquares {
         if (A.length == 0) {
             return new int[]{};
         }
+        int begin = 0;
+        for (int a : A) {
+            if (a >= 0) {
+                begin = a;
+            }
+        }
+
         int p1 = 0;
-        int p2 = A.length - 1;
+        int p2 = begin;
         int p11 = A[p1] * A[p1];
         int p22 = A[p2] * A[p2];
         int[] ans = new int[A.length];
         int index = 0;
-        while (p2 >= p1) {
+        while (p1 < p2 && p2 < A.length) {
             if (p11 < p22) {
                 ans[index] = p11;
                 p1 ++;
                 p11 = A[p1] * A[p1];
             } else {
                 ans[index] = p22;
-                p2 --;
+                p2 ++;
                 p22 = A[p2] * A[p2];
             }
             index ++;
