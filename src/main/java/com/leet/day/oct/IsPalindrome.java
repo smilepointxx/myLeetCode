@@ -19,12 +19,13 @@ public class IsPalindrome {
         ListNode slow = head;
         ListNode fast = head;
         List<Integer> array = new ArrayList<>();
-        while (fast != null && fast.next != null) {
+        while (fast.next != null && fast.next.next != null) {
             array.add(slow.val);
             slow = slow.next;
             fast = fast.next.next;
         }
-        int size = array.size() % 2 == 0 ? array.size() : array.size() - 1;
+        array.add(slow.val);
+        int size = fast.next != null ? array.size() : array.size() - 1;
         for (int i = size - 1; i >= 0; i--) {
             slow = slow.next;
             if (slow == null) {
@@ -41,8 +42,8 @@ public class IsPalindrome {
         ListNode node = new ListNode(1);
         ListNode node2 = new ListNode(2);
         node.next = node2;
-//        ListNode nod3 = new ListNode(2);
-//        node2.next = nod3;
+        ListNode nod3 = new ListNode(3);
+        node2.next = nod3;
 //        ListNode nod4 = new ListNode(2);
 //        nod3.next = nod4;
 //        ListNode nod5 = new ListNode(1);
