@@ -21,18 +21,41 @@ public class ReorderList {
         }
         ListNode right = helpRevertNode(slow.next);
         slow.next =null;
+        ListNode left = head;
+        while (left != null && right != null) {
+            ListNode leftNext = left.next;
+            left.next = right;
+            right = right.next;
+            left.next.next = leftNext;
+            left = left.next.next;
+        }
 
     }
 
     private ListNode helpRevertNode(ListNode node) {
-        if (node == null) {
+        if (node.next == null) {
             return node;
         }
-        node.next = helpRevertNode(node.next);
-        return node;
-
-
-
+        ListNode next = helpRevertNode(node.next);
+        next.next = node;
+        node.next = null;
+        return next.next;
     }
+
+    public static void main(String[] args) {
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        node1.next = node2;
+        ListNode node3 = new ListNode(3);
+        node2.next = node3;
+        ReorderList reorderList = new ReorderList();
+        ListNode node = reorderList.helpRevertNode(node1);
+        while (node.next != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
+    }
+
+
 
 }

@@ -13,26 +13,27 @@ public class PartitionLabels {
 
     public List<Integer> partitionLabels(String S) {
 
-        if (StringUtils.isEmpty(S)) {
+        if (S == null || S.length() == 0) {
             return new ArrayList<>();
         }
-
         int begin = 0;
         int end = S.lastIndexOf(S.charAt(0));
         List<Integer> ans = new ArrayList<>();
-        for (int i = 1; i < S.length(); i++) {
-            int i1 = S.lastIndexOf(S.charAt(i));
-            int i2 = S.indexOf(S.charAt(i));
+        int i = 1;
+        while (i < S.length()) {
+            int i1 = S.indexOf(S.charAt(i));
+            int i2 = S.lastIndexOf(S.charAt(i));
             if (i1 > end && i2 > end) {
-                ans.add(end - begin);
+                ans.add(end - begin + 1);
                 begin = i1;
                 end = i2;
             } else {
                 begin = Math.min(begin, i1);
                 end = Math.max(end, i2);
             }
-            i = i2;
+            i ++;
         }
+        ans.add(end - begin + 1);
         return ans;
     }
 
