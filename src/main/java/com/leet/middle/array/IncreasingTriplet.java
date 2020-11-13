@@ -6,6 +6,29 @@ package com.leet.middle.array;
  */
 public class IncreasingTriplet {
 
+
+    public boolean increasingTripletV2(int[] nums) {
+
+        if (nums.length < 3) {
+            return false;
+        }
+
+        int left = nums[0];
+        int middle = Integer.MAX_VALUE;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] <= left) {
+                left = nums[i];
+            } else if (nums[i] <= middle) {
+                middle = nums[i];
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public boolean increasingTriplet(int[] nums) {
         if (nums.length < 3) {
             return false;
@@ -39,7 +62,7 @@ public class IncreasingTriplet {
     public static void main(String[] args) {
         int[] nums = new int[]{5,1,5,5,2,5,4};
         IncreasingTriplet increasingTriplet = new IncreasingTriplet();
-        boolean b = increasingTriplet.increasingTriplet(nums);
+        boolean b = increasingTriplet.increasingTripletV2(nums);
         System.out.println(b);
     }
 
