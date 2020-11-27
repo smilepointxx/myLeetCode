@@ -6,7 +6,6 @@ package com.leet.middle.dynamic;
  */
 public class CoinChange {
 
-    int ans = Integer.MAX_VALUE;
 
     public int coinChange(int[] coins, int amount) {
         int[] count = new int[amount];
@@ -32,6 +31,12 @@ public class CoinChange {
         }
         count[amount - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
         return coins[amount - 1];
+    }
+
+
+    public int coinChangeV2(int[] coins, int amount) {
+
+        return 1;
     }
 
 }
