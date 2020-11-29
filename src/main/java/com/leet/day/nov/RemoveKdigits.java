@@ -1,8 +1,6 @@
 package com.leet.day.nov;
 
-import com.sun.imageio.plugins.common.I18N;
-
-import java.util.*;
+import java.util.Stack;
 
 /**
  * @Author: xingxing.chang
