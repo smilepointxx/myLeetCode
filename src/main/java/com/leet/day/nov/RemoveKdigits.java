@@ -9,9 +9,6 @@ import java.util.Stack;
 public class RemoveKdigits {
 
     public String removeKdigits(String num, int k) {
-
-
-
         Stack<Character> stack = new Stack<>();
         for (char c : num.toCharArray()) {
             if (!stack.isEmpty()) {

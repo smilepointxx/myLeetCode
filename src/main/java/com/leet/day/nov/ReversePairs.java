@@ -9,7 +9,7 @@ public class ReversePairs {
         }
         for (int i  = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] < Integer.MAX_VALUE / 2 && nums[j] < Integer.MIN_VALUE / 2 && nums[i] > nums[j] * 2) {
+                if (nums[j] <= Integer.MAX_VALUE / 2 && nums[j] >= Integer.MIN_VALUE / 2 && nums[i] > nums[j] * 2) {
                     ans++;
                 }
             }
@@ -18,9 +18,11 @@ public class ReversePairs {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{2147483647,2147483647,2147483647,2147483647,2147483647,2147483647};
+        int[] nums = new int[]{2147483647,2147483647,-2147483647,-2147483647,-2147483647,2147483647};
         ReversePairs reversePairs = new ReversePairs();
         System.out.println(reversePairs.reversePairs(nums));
+
+        System.out.println(2147483647 / 2);
     }
 
 }
