@@ -13,29 +13,25 @@ import java.util.PriorityQueue;
 public class MergeKLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode newHead = new ListNode(-1);
-        ListNode head = newHead;
-        while (true) {
-            ListNode node = help(lists);
-            if (node != null) {
-                head.next = node;
-                node = node.next;
-            } else {
-                head.next = null;
-                return newHead;
-            }
-        }
-    }
-
-    public ListNode help(ListNode[] lists) {
+        ListNode head = new ListNode(-1);
+        ListNode node = head;
         PriorityQueue<ListNode> queue = new PriorityQueue<>((o1, o2) -> o1.val - o2.val);
         for (ListNode listNode : lists) {
             if (listNode != null) {
                 queue.offer(listNode);
             }
         }
-        return queue.peek();
+        while (!queue.isEmpty()) {
+            ListNode poll = queue.poll();
+            node.next = poll;
+            node = node.next;
+            if (poll.next != null) {
+                queue.offer(poll.next);
+            }
+        }
+        return head.next;
     }
+
 
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
@@ -53,6 +49,9 @@ public class MergeKLists {
 
         ListNode[] list = new ListNode[]{node1, node4};
         MergeKLists mergeKLists = new MergeKLists();
+        ListNode listNode = mergeKLists.mergeKLists(list);
+        System.out.println(listNode.val);
+
     }
 
 }
