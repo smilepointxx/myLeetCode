@@ -15,26 +15,19 @@ public class LowestCommonAncestor {
         if (root == null || p == null || q == null) {
             return null;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode poll = queue.poll();
-                int value = poll.val;
-                if (value == p.val) {
-
-                }
-
-                if (poll.left != null) {
-                    queue.offer(poll.left);
-                }
-                if (poll.right != null) {
-                    queue.offer(poll.right);
-                }
-            }
+        if (root.val == p.val || root.val == q.val) {
+            return root;
         }
-        return null;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        }
+        if (left == null) {
+            return right;
+        } else {
+            return left;
+        }
     }
 
 }
