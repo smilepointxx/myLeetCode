@@ -36,7 +36,7 @@ public class CountPrimes {
     }
 
 
-    public int  test(int n) {
+    public int test(int n) {
 
         n = n - 1;
         if (n == 0) {
@@ -48,8 +48,8 @@ public class CountPrimes {
 
         double prescription = Math.sqrt(n);
         for (int i = 2; i <= prescription; i++) {
-            for (int j = i*i; j <= n; j+=i) {
-                num[j-1] = 1;
+            for (int j = i * i; j <= n; j += i) {
+                num[j - 1] = 1;
             }
         }
 

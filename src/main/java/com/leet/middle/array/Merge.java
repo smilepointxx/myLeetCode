@@ -1,7 +1,6 @@
 package com.leet.middle.array;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: xingxing.chang
@@ -10,35 +9,37 @@ import java.util.List;
 public class Merge {
 
     public int[][] merge(int[][] intervals) {
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        for (int[] ints : intervals) {
-            min = Math.min(ints[0], min);
-            max = Math.max(ints[1], max);
+        if (intervals.length == 0) {
+            return intervals;
         }
-        int[] array = new int[max - min + 1];
-
-        for (int[] ints : intervals) {
-            for (int i = ints[0]; i <= ints[1]; i++) {
-                array[i - min] = 1;
+        Queue<int[]> queue = new PriorityQueue<>(intervals.length, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
             }
-        }
-        List<int[]> ansList = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == 1) {
-                int left = i;
-                while (i < array.length && array[i] == 1) {
-                    i++;
-                }
-                ansList.add(new int[]{left + min, i - 1 + min});
-            }
+        });
+        for (int[] interval : intervals) {
+            queue.offer(interval);
         }
 
-        int[][] ans = new int[ansList.size()][];
-        int i = 0;
-        for (int[] arr : ansList) {
-            ans[i] = arr;
-            i++;
+        List<int[]> list = new ArrayList<>();
+        list.add(queue.poll());
+        while (!queue.isEmpty()) {
+            int[] interval = queue.poll();
+            int[] last = list.get(list.size() - 1);
+            if (interval[0] <= last[1]) { // merge
+                last[0] = Math.min(last[0], interval[0]);
+                last[1] = Math.max(last[1], interval[1]);
+                list.remove(list.size() - 1);
+                list.add(last);
+            } else { //put new interval
+                list.add(interval);
+            }
+        }
+        int[][] ans = new int[list.size()][2];
+        int index = 0;
+        for (int[] interval : list) {
+            ans[index++] = interval;
         }
         return ans;
 
@@ -47,10 +48,15 @@ public class Merge {
     public static void main(String[] args) {
         Merge merge = new Merge();
         int[][] intervals = new int[][] {
-                {1,3},{2,6},{8,10},{15,18}
+                {2,3},{4,5},{6,7},{8,9},{1,10}
         };
-        merge.merge(intervals);
-        System.out.println(intervals);
+        int[][] ans = merge.merge(intervals);
+        for (int[] i : ans) {
+            System.out.print(i[0]);
+            System.out.print(",");
+            System.out.print(i[1]);
+            System.out.println();
+        }
     }
 
 }

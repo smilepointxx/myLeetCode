@@ -22,11 +22,14 @@ public class Calculate {
         symbolList.add('-');
         symbolList.add('*');
         symbolList.add('/');
-        int j = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (symbolList.contains(s.charAt(i))) {
-                nums.push(Integer.parseInt(s.substring(j, i)));
+            int j = i;
+            while (!symbolList.contains(s.charAt(j))) {
+                j++;
             }
+            nums.push(Integer.parseInt(s.substring(i, j)));
+            symbol.push(s.charAt(j));
+            i = j + 1;
         }
         return 1;
     }

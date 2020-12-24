@@ -21,7 +21,6 @@ public class IsAnagram {
             if (temp[index] < 0) {
                 return false;
             }
-
         }
         return true;
     }
@@ -29,6 +28,17 @@ public class IsAnagram {
     public static void main(String[] args) {
         System.out.println('a' ^ 'b');
         System.out.println(new IsAnagram().isAnagram("anagram", "nagaram"));
+    }
+
+    public boolean isAnagramV2(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            ans ^= s.charAt(i) ^ t.charAt(i);
+        }
+        return ans == 0;
     }
 
 }

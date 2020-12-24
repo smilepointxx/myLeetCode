@@ -31,22 +31,53 @@ import java.util.Map;
  */
 public class CanFinish {
 
+    List<List<Integer>> list;
+    boolean ans = true;
+    int[] vis;
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        Map<Integer, List<Integer>> map1 = new HashMap<>();
-        for (int[] i : prerequisites) {
-            List<Integer> orDefault1 = map1.getOrDefault(i[0], new ArrayList<>());
-            orDefault1.add(i[1]);
-            map1.put(i[0], orDefault1);
+        list = new ArrayList<>(numCourses);
+        for (int i = 0; i < numCourses; i++) {
+            list.add(new ArrayList<>());
         }
-        for (Map.Entry<Integer, List<Integer>> entry : map1.entrySet()) {
-            for (int i : entry.getValue()) {
-                if (map1.get(i) != null && map1.get(i).contains(entry.getKey())) {
-                    return false;
-                }
+        vis = new int[numCourses];
+        for (int[] i : prerequisites) {
+            list.get(i[1]).add(i[0]);
+        }
+        for (int i = 0; i < numCourses && ans; i++) {
+            if (vis[i] == 0) {
+                dfs(i);
             }
         }
-        return true;
+        return ans;
 
+    }
+
+    public void dfs(int i) {
+
+        vis[i] = 1;
+        for (int j : list.get(i)) {
+            if (vis[j] == 0) {
+                dfs(j);
+                if (!ans) {
+                    return;
+                }
+            } else if (vis[j] == 1) {
+                ans = false;
+                return;
+            }
+        }
+        vis[i] = 3;
+
+    }
+
+    public static void main(String[] args) {
+        CanFinish canFinish = new CanFinish();
+        int[][] prerequisites = new int[][]{
+                {1,0}
+        };
+
+        System.out.println(canFinish.canFinish(2, prerequisites));
     }
 
 }

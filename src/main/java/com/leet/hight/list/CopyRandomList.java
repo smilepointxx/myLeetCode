@@ -9,28 +9,40 @@ import java.util.Map;
  */
 public class CopyRandomList {
 
+    public static Map<Integer, Node> map = new HashMap<>();
+
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;
         }
-        Map<Integer, Node> map = new HashMap<>();
-        Node ans = new Node(-1);
-        Node n = ans;
-        while (head.next != null) {
-            Node node = map.get(head.hashCode());
-            if (node != null) {
 
+        Node newHead = new Node(-1);
+        Node en = newHead;
+        Node node = head;
+
+
+        while (node.next != null) {
+            if (node.random == null) {
+                Node n = new Node(node.val);
+                en.next = n;
+            } else if (map.get(node.hashCode()) != null) {
+                en.next = map.get(node.hashCode());
+            } else{
+                en.next = helper(node);
             }
-            Node random = head.random;
-            while(random != null) {
-
-            }
-            node = new Node(head.val);
-
-
-            head = head.next;
+            en = en.next;
+            node = node.next;
         }
 
+        return newHead.next;
+    }
+
+    private Node helper(Node node) {
+        if (map.get(node.hashCode()) != null) {
+            return map.get(node.hashCode());
+        }
+        Node n = new Node(node.val);
+        n.next = node.next;
         return null;
     }
 
