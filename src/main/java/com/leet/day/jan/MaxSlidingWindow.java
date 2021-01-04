@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class MaxSlidingWindow {
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums.length == 0) {
+        if (nums.length == 0 || k < 2) {
             return nums;
         }
 
@@ -26,13 +26,17 @@ public class MaxSlidingWindow {
                 deque.offerFirst(i);
                 continue;
             }
-            int lastId = deque.peekLast();
-            int firstId = deque.peekFirst();
 
-            if(nums[i] >= nums[firstId]) {
-                deque.removeFirst();
+
+            while (!deque.isEmpty()) {
+                if(nums[i] >= nums[deque.peekFirst()]) {
+                    deque.removeFirst();
+                } else {
+                    break;
+                }
             }
             deque.offerFirst(i);
+            int lastId = deque.peekLast();
             if (i - lastId >= k) {
                 deque.removeLast();
             }
@@ -42,7 +46,11 @@ public class MaxSlidingWindow {
     }
 
     public static void main(String[] str) {
-        int[] nums = new int[]{1,3,-1,-3,5,3,6,7};
-        int[] ans = maxSlidingWindow(nums, 3);
+        int[] nums = new int[]{-7,-8,7,5,7,1,6,0};
+        int[] ans = maxSlidingWindow(nums, 4);
+        for (int i : ans) {
+            System.out.println(i);
+        }
+
     }
 }
