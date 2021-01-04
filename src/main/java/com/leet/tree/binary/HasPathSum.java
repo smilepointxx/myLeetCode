@@ -8,25 +8,19 @@ import com.leet.utils.TreeNode;
  */
 public class HasPathSum {
 
-    private boolean ans = false;
-
 
     public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) {
             return false;
         }
-        check(root, sum, 0);
-        return ans;
+        return check(root, sum, 0);
     }
 
-    private void check(TreeNode root, int sum, int S) {
+    private boolean check(TreeNode root, int sum, int S) {
         if (root == null) {
-            if (S == sum) {
-                ans = true;
-            }
+            return S == sum;
         } else {
-            check(root.left, sum, S + root.val);
-            check(root.right, sum, S + root.val);
+            return check(root.left, sum, S + root.val) || check(root.right, sum, S + root.val);
         }
     }
 
