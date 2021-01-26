@@ -29,11 +29,11 @@ public class MaxSlidingWindow {
             int lastId = deque.peekLast();
             int firstId = deque.peekFirst();
 
-            if(nums[i] >= nums[firstId]) {
-                deque.removeFirst();
+            if(nums[i] >= nums[lastId]) {
+                deque.removeLast();
             }
-            deque.offerFirst(i);
-            if (i - lastId >= k) {
+            deque.offerLast(i);
+            if (i - firstId >= k) {
                 deque.removeLast();
             }
             ans[i - k + 1] = nums[deque.peekLast()];

@@ -20,7 +20,13 @@ public class HasPathSum {
         if (root == null) {
             return S == sum;
         } else {
-            return check(root.left, sum, S + root.val) || check(root.right, sum, S + root.val);
+            if (root.right == null) {
+                return check(root.left, sum, S + root.val);
+            } else if (root.left == null){
+                return check(root.right, sum, S + root.val);
+            } else {
+                return check(root.left, sum, S + root.val) || check(root.right, sum, S + root.val);
+            }
         }
     }
 
